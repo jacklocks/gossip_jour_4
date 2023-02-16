@@ -1,0 +1,29 @@
+<div class="jumbotron">
+        <div class="container">
+        <br>
+        <br>
+<% if session[:user_id].present? %>
+  <h2>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h2>
+<% end %>
+<br>
+<br>
+<p class="text-center"><a href="<%= new_gossip_path %>" class="btn btn-primary">Créer un article</a></p>
+<br>
+<br>
+
+<h2> Voici les gossips:</h2>
+
+
+<table class="table">
+  <% @gossip.each do |gossip| %>
+    <tr>
+      <td class="text-left"><%= link_to gossip.user.first_name, "/user/#{gossip.user.id}" %></td>
+      <td class="text-center"><%= link_to gossip.title, "/gossip/#{gossip.id}" %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+          
+        </div>
+      </div>
